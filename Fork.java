@@ -6,7 +6,7 @@ public class Fork {
     //initalizing forks id
     private int id;
     //creating lock and condion variable for fork
-    private Lock lock;
+    private ReentrantLock lock;
     private Condition condition;
     private Boolean inUse;
     
@@ -28,11 +28,26 @@ public class Fork {
                 condition.await(); 
             }
             inUse = true;
-            Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
         } finally {
-            System.out.println(philNumber + " ate for " + eatTime + " ms ");
+            lock.unlock();
+        }
+    
+        // Move the sleep and print statements outside the lock
+        try {
+            Thread.sleep(eatTime);
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        }
+    
+        System.out.println(philNumber + " ate for " + eatTime + " ms ");
+    
+        lock.lock(); // Reacquire the lock to signal completion
+        try {
+            inUse = false;
+            condition.signal();
+        } finally {
             lock.unlock();
         }
     }
