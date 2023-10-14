@@ -18,11 +18,19 @@ public class Fork {
         this.inUse = lock.newCondition();
     }
 
-    public void pickupForks(int philNumber) {
-
+    public void pickupForks(philNumber, eatTime) {
         lock.lock();
-
-        lock.unlock();
+        try {
+            while(lock.hasWaiters(inUse)) {
+                inUse.await(); 
+            }
+        } catch (InterruptedException e) {
+            System.out.println(e);
+        } finally {
+            Thread.sleep(eatTime);
+            lock.unlock();
+        }
     }
-
+    
+    public void putDownFork(int
 }
