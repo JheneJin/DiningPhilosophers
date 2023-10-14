@@ -8,7 +8,7 @@ public class Fork {
     //creating lock and condion variable for fork
     private Lock lock;
     private Condition condition;
-    private inUse boolean;
+    private Boolean inUse;
     
     Fork(int id) {
         //giving fork an id
@@ -21,23 +21,23 @@ public class Fork {
         this.inUse = false;
     }
 
-    public void pickupForks(philNumber, eatTime) {
+    public void takeFork(int philNumber, int eatTime) {
         lock.lock();
         try {
-            if (inUse == true) {
-                inUse.await(); 
+            while (inUse == true) {
+                condition.await(); 
             }
             inUse = true;
+            Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
         } finally {
-            Thread.sleep(eatTime);
-            System.out.println(philNumber + "ate for " + eatTime;
+            System.out.println(philNumber + " ate for " + eatTime + " ms ");
             lock.unlock();
         }
     }
     
-    public void putDownFork() {
+    public void returnFork() {
         lock.lock();
         try {
             inUse = false;
