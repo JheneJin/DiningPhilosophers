@@ -24,15 +24,14 @@ public class Fork {
     public void takeFork(int philNumber, int eatTime) {
         lock.lock();
         try {
+            System.out.println("forkID: " + id+ "inUse: " + inUse + " " + philNumber);
             while (inUse == true) {
                 condition.await(); 
             }
             inUse = true;
-            Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
         } finally {
-            System.out.println(philNumber + " ate for " + eatTime + " ms ");
             lock.unlock();
         }
     }

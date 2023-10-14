@@ -48,6 +48,7 @@ public class Philosopher implements Runnable {
         //philosopher going to server to pickup fok
         int waitTime = randWait();
         server.takeForks(id, waitTime);
+        server.returnForks(id);
     }
 
     private int randWait() {

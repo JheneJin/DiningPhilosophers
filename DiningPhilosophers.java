@@ -8,7 +8,7 @@
 
 public class DiningPhilosophers {  
    public static void main(String args[]) {
-        int numOfPhilosophers = 2;
+        int numOfPhilosophers = 5;
 
         //create empty array for philosophers
         Philosopher[] philosophers = new Philosopher[numOfPhilosophers];
