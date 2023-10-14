@@ -46,6 +46,7 @@ public class Philosopher implements Runnable {
 
     private void eat() {
         //philosopher going to server to pickup fok
+        int waitTime = randWait();
         server.takeForks(id, waitTime);
     }
 
