@@ -27,19 +27,19 @@ public class DiningServerImpl  implements DiningServer {
 
 	public void takeForks(int philNumber, int eatTime) {
         //using fork's pickup method
-        forks[philNumber].takeFork(philNumber, eatTime);
-		forks[(philNumber + 1) % amountOfPhilosphers].takeFork(philNumber, eatTime);
+		// System.out.println("Fork: " + forks[2]);
+        forks[philNumber].takeFork(philNumber);
+		forks[(philNumber + 1) % amountOfPhilosphers].takeFork(philNumber);
         try {
             Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
         }
-        System.out.println(philNumber + " ate for " + eatTime + " ms ");
+		System.out.println("Philosopher #" + philNumber + " ate for " + eatTime + " ms ");
     }
 
     public void returnForks(int philNumber) {
 		forks[philNumber].returnFork();
 		forks[(philNumber + 1) % amountOfPhilosphers].returnFork();
     }
-
 }
