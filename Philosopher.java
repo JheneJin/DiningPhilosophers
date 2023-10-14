@@ -36,8 +36,7 @@ public class Philosopher implements Runnable {
             Thread.sleep(sleepTime);
 
             //printing amount philosopher slept
-            System.out.println("Philosopher #" + id + " took " + sleepTime 
-                    + "ms thinking");
+            System.out.println("Philosopher #" + id + " is thinking for " + sleepTime + " ms");
         } catch (InterruptedException e) {
             //printing possible InterruptedException for sleeping
             System.out.println(e);
