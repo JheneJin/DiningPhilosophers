@@ -25,11 +25,13 @@ public class DiningServerImpl  implements DiningServer {
 
 	public void takeForks(int philNumber, int eatTime) {
         //using fork's pickup method
-        forks[philNumber].pickupForks(philNumber, eatTime);
-
+        forks[philNumber].takeFork(philNumber, eatTime);
+		forks[(philNumber + 1) % 5].takeFork(philNumber, eatTime);
     }
 
     public void returnForks(int philNumber) {
+		forks[philNumber].returnFork();
+		forks[(philNumber + 1) % 5].returnFork();
     }
 
 }
