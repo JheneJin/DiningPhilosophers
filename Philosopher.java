@@ -29,12 +29,8 @@ public class Philosopher implements Runnable {
 
     private void think() {
         try {
-            //giving a max and min amount of seconds to think
-            int maxSeconds = 3000;
-            int minSeconds = 1000;
             //getting random number to think
-            int randomNumber = (int)(Math.random()*(maxSeconds-minSeconds+1)+minSeconds);
-
+            int randomNumber = randWait(); 
             //setting sleep time and putting philosopher to sleep
             int sleepTime = randomNumber;
             Thread.sleep(sleepTime);
@@ -50,6 +46,16 @@ public class Philosopher implements Runnable {
 
     private void eat() {
         //philosopher going to server to pickup fok
-        server.takeForks(id);
+        server.takeForks(id, waitTime);
+    }
+
+    private int randWait() {
+        //giving a max and min amount of seconds to think
+        int maxSeconds = 3000;
+        int minSeconds = 1000;
+        //getting random number to think
+        int randomNumber = (int)(Math.random()*(maxSeconds-minSeconds+1)+minSeconds);
+        
+        return randomNumber;
     }
 }
