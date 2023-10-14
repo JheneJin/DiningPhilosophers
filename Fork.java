@@ -21,10 +21,10 @@ public class Fork {
         this.inUse = false;
     }
 
-    public void takeFork(int philNumber, int eatTime) {
+    public void takeFork(int philNumber) {
         lock.lock();
         try {
-            System.out.println("forkID: " + id+ "inUse: " + inUse + " " + philNumber);
+            System.out.println("Fork #" + id + " is being used by Philosopher #" + philNumber);
             while (inUse == true) {
                 condition.await(); 
             }
