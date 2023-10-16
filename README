@@ -1,2 +1,3 @@
 To run the code you have to have all the files in one folder.
-To see the output you would run the DiningPhilosophers.java file.
+Compile the files using "javac DiningPhilosophers.java"
+Run the program using "Java DiningPhilosophers"
