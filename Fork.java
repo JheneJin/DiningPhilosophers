@@ -15,7 +15,7 @@ public class Fork {
         this.id = id;
         //making lock a ReentrantLock
         this.lock = new ReentrantLock();
-        //making condion connected to lock (MIGHT BE WRONG)
+        //initiallize condition of the lock
         this.condition = lock.newCondition();
         //boolean to flag if the fork is in use or not in use
         this.inUse = false;
