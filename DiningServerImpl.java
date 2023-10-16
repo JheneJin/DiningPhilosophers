@@ -26,20 +26,23 @@ public class DiningServerImpl  implements DiningServer {
     }
 
 	public void takeForks(int philNumber, int eatTime) {
-        //using fork's pickup method
-		// System.out.println("Fork: " + forks[2]);
+	//take left fork
         forks[philNumber].takeFork(philNumber);
+	//take right fork thru modulo
 		forks[(philNumber + 1) % amountOfPhilosphers].takeFork(philNumber);
         try {
+	//thread(user) will sleep after both forks are taken	
             Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
-        }
+        //
 		System.out.println("Philosopher #" + philNumber + " ate for " + eatTime + " ms ");
     }
 
     public void returnForks(int philNumber) {
+	    	//return left  fork
 		forks[philNumber].returnFork();
+	    	//return right fork through modulo
 		forks[(philNumber + 1) % amountOfPhilosphers].returnFork();
     }
 }
