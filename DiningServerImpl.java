@@ -35,7 +35,8 @@ public class DiningServerImpl  implements DiningServer {
             Thread.sleep(eatTime);
         } catch (InterruptedException e) {
             System.out.println(e);
-        //
+        }
+        // Prints out which philopher ate and for how long
 		System.out.println("Philosopher #" + philNumber + " ate for " + eatTime + " ms ");
     }
 
