@@ -22,33 +22,33 @@ public class Fork {
     }
 
     public void takeFork(int philNumber) {
-        //locks the fork
+        //locks the takeFork method
         lock.lock();
         try {
             //display the fork id and who is using it
             System.out.println("Fork #" + id + " is being used by Philosopher #" + philNumber);
             while (inUse == true) {
-                //philosopher waits for the fork to not be in use
+                //philosopher waits for the signal that the fork is not being used
                 condition.await(); 
             }
             inUse = true;
         } catch (InterruptedException e) {
             System.out.println(e);
         } finally {
-            //after the philosopher is done using the fork, it will unlock the fork
+            //after the philosopher is done using the method, it unlocks it
             lock.unlock();
         }
     }
     
     public void returnFork() {
-        //locks the fork
+        //locks the returnFork method
         lock.lock();
         try {
             //fork is not in use, so signals to the philospher can freely take it
             inUse = false;
             condition.signal();
         } finally {
-             //after the philosopher is done using the fork, it will unlock the fork
+             //after the philosopher is done using the method, it unlocks it
             lock.unlock();
         }
     }
